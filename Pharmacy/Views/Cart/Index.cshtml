@@ -1,0 +1,150 @@
+﻿@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<main>
+
+    <!-- Page Banner -->
+    <section class="customer-page-banner">
+        <div class="container">
+
+            <div class="breadcrumb">
+                <a asp-controller="Home" asp-action="Index">Home</a>
+                <span>/</span>
+                <span>Shopping Cart</span>
+            </div>
+
+            <h1>Shopping Cart</h1>
+            <p>Review your selected medicines before checkout.</p>
+
+        </div>
+    </section>
+
+    <!-- Cart Content -->
+    <section class="cart-page-section">
+        <div class="container">
+
+            <div class="cart-layout">
+
+                <!-- Cart Items -->
+                <div class="cart-main">
+
+                    <div class="cart-section-header">
+
+                        <div>
+                            <h2>Your Items</h2>
+                            <p>Review and update your cart.</p>
+                        </div>
+
+                        <a asp-controller="Medicines"
+                           asp-action="Index"
+                           class="text-link">
+                            Continue Shopping
+                        </a>
+
+                    </div>
+
+                    <!-- Cart Items Container -->
+                    <div class="cart-items" data-cart-items>
+
+                        <!--
+                            Cart items are rendered by customer.js.
+                            Do not add static product rows here.
+                        -->
+
+                    </div>
+
+                    <!-- Empty Cart -->
+                    <div class="empty-state" data-cart-empty hidden>
+
+                        <div class="empty-state-icon">
+                            🛒
+                        </div>
+
+                        <h3>Your Cart Is Empty</h3>
+
+                        <p>
+                            You haven't added any medicines yet.
+                            Start shopping to add products.
+                        </p>
+
+                        <a asp-controller="Medicines"
+                           asp-action="Index"
+                           class="btn btn-primary">
+                            Browse Medicines
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <!-- Order Summary -->
+                <aside class="cart-summary">
+
+                    <div class="summary-card">
+
+                        <h2>Order Summary</h2>
+
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+
+                            <strong data-cart-subtotal>
+                                EGP 0.00
+                            </strong>
+                        </div>
+
+                        <div class="summary-row">
+                            <span>Delivery Fee</span>
+
+                            <strong data-cart-delivery>
+                                EGP 0.00
+                            </strong>
+                        </div>
+
+                        <div class="summary-divider"></div>
+
+                        <div class="summary-row summary-total">
+                            <span>Total</span>
+
+                            <strong data-cart-total>
+                                EGP 0.00
+                            </strong>
+                        </div>
+
+                        <a asp-controller="Checkout"
+                           asp-action="Index"
+                           class="btn btn-primary btn-block"
+                           data-checkout-link>
+                            Proceed to Checkout
+                        </a>
+
+                        <p class="summary-note">
+                            Delivery fees may vary by branch and address.
+                        </p>
+
+                    </div>
+
+                    <!-- Payment Info -->
+                    <div class="payment-info-card">
+
+                        <h3>Payment Method</h3>
+
+                        <div class="payment-info-item">
+                            <span>✓</span>
+
+                            <div>
+                                <strong>Cash on Delivery</strong>
+                                <p>Pay when your order arrives.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>

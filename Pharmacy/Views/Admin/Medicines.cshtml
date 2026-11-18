@@ -1,0 +1,445 @@
+﻿@{
+    ViewData["Title"] = "Medicines";
+    ViewData["Subtitle"] = "Manage medicines and stock";
+    ViewData["Page"] = "medicines";
+    ViewData["ActivePage"] = "Medicines";
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Page Header -->
+<section class="page-header">
+
+    <div class="page-heading">
+        <h2>Medicine Management</h2>
+        <p>Manage products, prices, and branch inventory.</p>
+    </div>
+
+    <div class="page-actions">
+        <button type="button"
+                class="btn btn-primary"
+                data-modal-open="addMedicineModal">
+            + Add New Medicine
+        </button>
+    </div>
+
+</section>
+
+<!-- Statistics -->
+<section class="stats-grid">
+
+    <article class="stat-card">
+        <div class="stat-card-top">
+            <span class="stat-label">Total Medicines</span>
+            <span class="stat-icon blue">▤</span>
+        </div>
+
+        <h3 class="stat-value">0</h3>
+        <p class="stat-description">Total records</p>
+    </article>
+
+    <article class="stat-card">
+        <div class="stat-card-top">
+            <span class="stat-label">Available Items</span>
+            <span class="stat-icon green">✓</span>
+        </div>
+
+        <h3 class="stat-value">0</h3>
+        <p class="stat-description">In stock</p>
+    </article>
+
+    <article class="stat-card">
+        <div class="stat-card-top">
+            <span class="stat-label">Low Stock</span>
+            <span class="stat-icon orange">!</span>
+        </div>
+
+        <h3 class="stat-value">0</h3>
+        <p class="stat-description">Need restocking</p>
+    </article>
+
+    <article class="stat-card">
+        <div class="stat-card-top">
+            <span class="stat-label">Out of Stock</span>
+            <span class="stat-icon red">×</span>
+        </div>
+
+        <h3 class="stat-value">0</h3>
+        <p class="stat-description">Unavailable items</p>
+    </article>
+
+</section>
+
+<!-- Medicines Table -->
+<section class="dashboard-section">
+
+    <div class="dashboard-section-header">
+
+        <div>
+            <h3 class="dashboard-section-title">
+                All Medicines
+            </h3>
+
+            <p>View and manage your medicine catalog</p>
+        </div>
+
+        <span class="badge badge-info" id="medicinesTotalBadge">
+            0 Medicines
+        </span>
+
+    </div>
+
+    <!-- Toolbar -->
+    <div class="table-toolbar">
+
+        <div class="table-search">
+            <span>⌕</span>
+
+            <input type="search"
+                   id="medicineSearch"
+                   name="search"
+                   placeholder="Search by name or ID..."
+                   aria-label="Search medicines"
+                   data-table-search="#medicinesTable">
+        </div>
+
+        <div class="toolbar-filters">
+
+            <select class="form-control"
+                    id="medicineBranchFilter"
+                    name="branchFilter"
+                    aria-label="Filter by branch"
+                    data-table-filter
+                    data-table-target="#medicinesTable"
+                    data-filter-column="3">
+
+                <option value="">All Branches</option>
+                <option value="Sheikh Zayed">Sheikh Zayed</option>
+                <option value="October">October</option>
+                <option value="Dokki">Dokki</option>
+                <option value="Maadi">Maadi</option>
+
+            </select>
+
+            <select class="form-control"
+                    id="medicineStockFilter"
+                    name="stockFilter"
+                    aria-label="Filter by stock status"
+                    data-table-filter
+                    data-table-target="#medicinesTable"
+                    data-filter-column="5">
+
+                <option value="">All Stock Status</option>
+                <option value="Available">Available</option>
+                <option value="Low Stock">Low Stock</option>
+                <option value="Out of Stock">Out of Stock</option>
+
+            </select>
+
+            <button type="button"
+                    class="btn btn-outline btn-sm"
+                    data-clear-filters>
+                Clear
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Table -->
+    <div class="table-responsive">
+
+        <table class="admin-table" id="medicinesTable">
+
+            <thead>
+                <tr>
+                    <th scope="col">Medicine ID</th>
+                    <th scope="col">Medicine Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Branch</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Stock Status</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody id="medicinesTableBody">
+                <!-- Rows are rendered by admin.js -->
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="table-footer">
+        <span data-table-count="medicinesTable">
+            Showing 0 medicines
+        </span>
+    </div>
+
+</section>
+
+<!-- Footer -->
+<footer class="admin-footer">
+    <p>PharmaCare Management System</p>
+    <span>Version 1.0</span>
+</footer>
+
+
+<!-- ADD MEDICINE MODAL -->
+<div class="modal" id="addMedicineModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <div>
+                <h3>Add New Medicine</h3>
+                <p>Enter the medicine details below.</p>
+            </div>
+
+            <button type="button"
+                    class="modal-close"
+                    data-modal-close
+                    aria-label="Close modal">
+                ×
+            </button>
+
+        </div>
+
+        <form id="addMedicineForm" data-form-purpose="create-medicine">
+
+            <div class="form-group">
+                <label for="medicineName">Medicine Name</label>
+
+                <input type="text"
+                       id="medicineName"
+                       name="medicineName"
+                       class="form-control"
+                       placeholder="Enter medicine name"
+                       maxlength="150"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="medicineCategory">Category</label>
+
+                <select id="medicineCategory"
+                        name="medicineCategory"
+                        class="form-control"
+                        required>
+
+                    <option value="">Select category</option>
+                    <option value="Pain Relief">Pain Relief</option>
+                    <option value="Vitamins">Vitamins</option>
+                    <option value="Antibiotics">Antibiotics</option>
+                    <option value="Allergy">Allergy</option>
+                    <option value="Supplements">Supplements</option>
+                    <option value="Other">Other</option>
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="medicinePrice">Price (EGP)</label>
+
+                <input type="number"
+                       id="medicinePrice"
+                       name="medicinePrice"
+                       class="form-control"
+                       placeholder="Enter price"
+                       min="0"
+                       step="0.01"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="medicineBranch">Branch</label>
+
+                <select id="medicineBranch"
+                        name="medicineBranch"
+                        class="form-control"
+                        required>
+
+                    <option value="">Select branch</option>
+                    <option value="Sheikh Zayed">Sheikh Zayed</option>
+                    <option value="October">October</option>
+                    <option value="Dokki">Dokki</option>
+                    <option value="Maadi">Maadi</option>
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="medicineQuantity">Initial Quantity</label>
+
+                <input type="number"
+                       id="medicineQuantity"
+                       name="medicineQuantity"
+                       class="form-control"
+                       placeholder="Enter quantity"
+                       min="0"
+                       step="1"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="medicineDescription">Description</label>
+
+                <textarea id="medicineDescription"
+                          name="medicineDescription"
+                          class="form-control"
+                          rows="3"
+                          maxlength="1000"
+                          placeholder="Enter medicine description"></textarea>
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button"
+                        class="btn btn-outline"
+                        data-modal-close>
+                    Cancel
+                </button>
+
+                <button type="submit"
+                        class="btn btn-primary">
+                    Save Medicine
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- EDIT MEDICINE MODAL -->
+<div class="modal" id="editMedicineModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <div>
+                <h3>Edit Medicine</h3>
+                <p>Update medicine information.</p>
+            </div>
+
+            <button type="button"
+                    class="modal-close"
+                    data-modal-close
+                    aria-label="Close modal">
+                ×
+            </button>
+
+        </div>
+
+        <form id="editMedicineForm" data-form-purpose="update-medicine">
+
+            <input type="hidden"
+                   id="editMedicineId"
+                   name="medicineId">
+
+            <div class="form-group">
+                <label for="editMedicineName">Medicine Name</label>
+
+                <input type="text"
+                       id="editMedicineName"
+                       name="medicineName"
+                       class="form-control"
+                       maxlength="150"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="editMedicineCategory">Category</label>
+
+                <select id="editMedicineCategory"
+                        name="medicineCategory"
+                        class="form-control"
+                        required>
+
+                    <option value="Pain Relief">Pain Relief</option>
+                    <option value="Vitamins">Vitamins</option>
+                    <option value="Antibiotics">Antibiotics</option>
+                    <option value="Allergy">Allergy</option>
+                    <option value="Supplements">Supplements</option>
+                    <option value="Other">Other</option>
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="editMedicinePrice">Price (EGP)</label>
+
+                <input type="number"
+                       id="editMedicinePrice"
+                       name="medicinePrice"
+                       class="form-control"
+                       min="0"
+                       step="0.01"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="editMedicineBranch">Branch</label>
+
+                <select id="editMedicineBranch"
+                        name="medicineBranch"
+                        class="form-control"
+                        required>
+
+                    <option value="Sheikh Zayed">Sheikh Zayed</option>
+                    <option value="October">October</option>
+                    <option value="Dokki">Dokki</option>
+                    <option value="Maadi">Maadi</option>
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="editMedicineQuantity">Quantity</label>
+
+                <input type="number"
+                       id="editMedicineQuantity"
+                       name="medicineQuantity"
+                       class="form-control"
+                       min="0"
+                       step="1"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="editMedicineDescription">Description</label>
+
+                <textarea id="editMedicineDescription"
+                          name="medicineDescription"
+                          class="form-control"
+                          rows="3"
+                          maxlength="1000"></textarea>
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button"
+                        class="btn btn-outline"
+                        data-modal-close>
+                    Cancel
+                </button>
+
+                <button type="submit"
+                        class="btn btn-primary">
+                    Save Changes
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

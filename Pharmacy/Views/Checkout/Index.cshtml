@@ -1,0 +1,337 @@
+﻿@{
+    ViewData["Title"] = "Checkout";
+}
+
+<main>
+
+    <!-- Page Banner -->
+    <section class="customer-page-banner">
+        <div class="container">
+
+            <div class="breadcrumb">
+                <a asp-controller="Home" asp-action="Index">Home</a>
+                <span>/</span>
+                <a asp-controller="Cart" asp-action="Index">Cart</a>
+                <span>/</span>
+                <span>Checkout</span>
+            </div>
+
+            <h1>Checkout</h1>
+            <p>Complete your information to place your order.</p>
+
+        </div>
+    </section>
+
+    <!-- Checkout -->
+    <section class="checkout-section">
+        <div class="container">
+
+            <form id="checkoutForm" data-checkout-form>
+
+                <div class="checkout-layout">
+
+                    <!-- Checkout Form -->
+                    <div class="checkout-main">
+
+                        <!-- Customer Information -->
+                        <div class="checkout-card">
+
+                            <div class="checkout-card-header">
+                                <div class="checkout-step">1</div>
+
+                                <div>
+                                    <h2>Customer Information</h2>
+                                    <p>Enter your contact details.</p>
+                                </div>
+                            </div>
+
+                            <div class="form-grid">
+
+                                <div class="form-group">
+                                    <label for="customerName">Full Name *</label>
+
+                                    <input type="text"
+                                           id="customerName"
+                                           name="customerName"
+                                           class="form-control"
+                                           placeholder="Enter your full name"
+                                           autocomplete="name"
+                                           required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="customerPhone">Phone Number *</label>
+
+                                    <input type="tel"
+                                           id="customerPhone"
+                                           name="customerPhone"
+                                           class="form-control"
+                                           placeholder="01XXXXXXXXX"
+                                           autocomplete="tel"
+                                           pattern="01[0-9]{9}"
+                                           maxlength="11"
+                                           required>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label for="customerEmail">Email Address</label>
+
+                                    <input type="email"
+                                           id="customerEmail"
+                                           name="customerEmail"
+                                           class="form-control"
+                                           placeholder="example@email.com"
+                                           autocomplete="email">
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Branch Selection -->
+                        <div class="checkout-card">
+
+                            <div class="checkout-card-header">
+                                <div class="checkout-step">2</div>
+
+                                <div>
+                                    <h2>Select Branch</h2>
+                                    <p>
+                                        Choose the branch that will
+                                        prepare your order.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="selectedBranch">
+                                    Pharmacy Branch *
+                                </label>
+
+                                <select id="selectedBranch"
+                                        name="branchId"
+                                        class="form-control"
+                                        required>
+
+                                    <option value="">Select a branch</option>
+                                    <option value="BR-001">Sheikh Zayed Branch</option>
+                                    <option value="BR-002">6th of October Branch</option>
+                                    <option value="BR-003">Dokki Branch</option>
+                                    <option value="BR-004">Maadi Branch</option>
+
+                                </select>
+                            </div>
+
+                            <div class="branch-note">
+                                <span>ⓘ</span>
+                                <p>
+                                    Medicine availability depends
+                                    on the selected branch.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <!-- Delivery Address -->
+                        <div class="checkout-card">
+
+                            <div class="checkout-card-header">
+                                <div class="checkout-step">3</div>
+
+                                <div>
+                                    <h2>Delivery Address</h2>
+                                    <p>Where should we deliver your order?</p>
+                                </div>
+                            </div>
+
+                            <div class="form-grid">
+
+                                <div class="form-group">
+                                    <label for="city">City *</label>
+
+                                    <input type="text"
+                                           id="city"
+                                           name="city"
+                                           class="form-control"
+                                           placeholder="Enter city"
+                                           required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="area">Area *</label>
+
+                                    <input type="text"
+                                           id="area"
+                                           name="area"
+                                           class="form-control"
+                                           placeholder="Enter area"
+                                           required>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label for="streetAddress">
+                                        Street Address *
+                                    </label>
+
+                                    <input type="text"
+                                           id="streetAddress"
+                                           name="streetAddress"
+                                           class="form-control"
+                                           placeholder="Street name and building number"
+                                           autocomplete="street-address"
+                                           required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="buildingNumber">
+                                        Building Number
+                                    </label>
+
+                                    <input type="text"
+                                           id="buildingNumber"
+                                           name="buildingNumber"
+                                           class="form-control"
+                                           placeholder="Building number">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="apartmentNumber">
+                                        Apartment Number
+                                    </label>
+
+                                    <input type="text"
+                                           id="apartmentNumber"
+                                           name="apartmentNumber"
+                                           class="form-control"
+                                           placeholder="Apartment number">
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label for="deliveryNotes">
+                                        Additional Notes
+                                    </label>
+
+                                    <textarea id="deliveryNotes"
+                                              name="deliveryNotes"
+                                              class="form-control"
+                                              rows="3"
+                                              placeholder="Landmark or delivery instructions"></textarea>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Payment Method -->
+                        <div class="checkout-card">
+
+                            <div class="checkout-card-header">
+                                <div class="checkout-step">4</div>
+
+                                <div>
+                                    <h2>Payment Method</h2>
+                                    <p>Choose how you want to pay.</p>
+                                </div>
+                            </div>
+
+                            <label class="payment-option selected">
+
+                                <input type="radio"
+                                       name="paymentMethod"
+                                       value="CashOnDelivery"
+                                       checked
+                                       required>
+
+                                <span class="payment-option-icon">EGP</span>
+
+                                <span class="payment-option-content">
+                                    <strong>Cash on Delivery</strong>
+                                    <small>
+                                        Pay when your order arrives.
+                                    </small>
+                                </span>
+
+                                <span class="payment-option-check">✓</span>
+
+                            </label>
+
+                            <div class="payment-note">
+                                Online payment is not available in
+                                this version.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Order Summary -->
+                    <aside class="checkout-sidebar">
+
+                        <div class="summary-card">
+
+                            <h2>Order Summary</h2>
+
+                            <div class="checkout-cart-items"
+                                 data-checkout-items>
+
+                                <p class="summary-empty">
+                                    Your order items will appear here.
+                                </p>
+
+                            </div>
+
+                            <div class="summary-divider"></div>
+
+                            <div class="summary-row">
+                                <span>Subtotal</span>
+
+                                <strong data-cart-subtotal>
+                                    EGP 0.00
+                                </strong>
+                            </div>
+
+                            <div class="summary-row">
+                                <span>Delivery Fee</span>
+
+                                <strong data-cart-delivery>
+                                    EGP 0.00
+                                </strong>
+                            </div>
+
+                            <div class="summary-divider"></div>
+
+                            <div class="summary-row summary-total">
+                                <span>Total</span>
+
+                                <strong data-cart-total>
+                                    EGP 0.00
+                                </strong>
+                            </div>
+
+                            <button type="submit"
+                                    class="btn btn-primary btn-block"
+                                    id="placeOrderButton">
+                                Place Order
+                            </button>
+
+                            <p class="summary-note">
+                                By placing your order, you agree
+                                to our order terms.
+                            </p>
+
+                            <a asp-controller="Cart"
+                               asp-action="Index"
+                               class="back-to-cart">
+                                ← Back to Cart
+                            </a>
+
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </form>
+
+        </div>
+    </section>
+
+</main>

@@ -1,0 +1,94 @@
+﻿
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shop medicines online with PharmaCare">
+    <title>@ViewData["Title"] - PharmaCare</title>
+
+    <link rel="stylesheet" href="~/css/global.css" />
+    <link rel="stylesheet" href="~/css/customer.css" />
+
+    <script src="~/js/shared/shared.js" defer></script>
+    <script src="~/js/customer/customer.js" defer></script>
+</head>
+
+<body>
+
+    <header class="customer-header">
+        <div class="container">
+            <a asp-controller="Home" asp-action="Index" class="customer-logo">
+                <span class="logo-icon">P</span>
+                <span>PharmaCare</span>
+            </a>
+
+            <nav class="customer-nav">
+                <a asp-controller="Home" asp-action="Index">Home</a>
+                <a asp-controller="Medicines" asp-action="Index">Medicines</a>
+            </nav>
+
+            <div class="customer-header-actions">
+                <a asp-controller="Account" asp-action="Login" class="header-login">
+                    Login
+                </a>
+
+                <a asp-controller="Cart" asp-action="Index" class="cart-link">
+                    <span class="cart-icon">🛒</span>
+                    <span>Cart</span>
+                    <span class="cart-count" data-cart-count>0</span>
+                </a>
+
+                <button type="button" class="mobile-menu-toggle"
+                        aria-label="Open menu">
+                    ☰
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer class="customer-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a asp-controller="Home" asp-action="Index" class="customer-logo">
+                        <span class="logo-icon">P</span>
+                        <span>PharmaCare</span>
+                    </a>
+
+                    <p>
+                        Your health partner. Find your medicines
+                        and place your order with ease.
+                    </p>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <a asp-controller="Home" asp-action="Index">Home</a>
+                    <a asp-controller="Medicines" asp-action="Index">Medicines</a>
+                    <a asp-controller="Cart" asp-action="Index">Shopping Cart</a>
+                    <a asp-controller="Account" asp-action="Login">Login</a>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Customer Help</h3>
+                    <a asp-controller="Medicines" asp-action="Index">Browse Products</a>
+                    <a asp-controller="Cart" asp-action="Index">View Cart</a>
+                    <a asp-controller="Account" asp-action="Register">Create Account</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 PharmaCare. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

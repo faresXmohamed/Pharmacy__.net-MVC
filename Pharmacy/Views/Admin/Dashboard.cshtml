@@ -1,0 +1,366 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    ViewData["Subtitle"] = "Welcome back, Admin";
+    ViewData["Page"] = "dashboard";
+    ViewData["ActivePage"] = "Dashboard";
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Page Header -->
+<section class="page-header">
+
+    <div class="page-heading">
+        <h2>Overview</h2>
+
+        <p>
+            Here is what's happening with your pharmacy today.
+        </p>
+    </div>
+
+    <div class="page-actions">
+        <span class="date-display" id="dashboardDate">
+            Today
+        </span>
+    </div>
+
+</section>
+
+<!-- Statistics -->
+<section class="stats-grid" id="dashboardStats">
+
+    <article class="stat-card">
+
+        <div class="stat-card-top">
+            <span class="stat-label">Total Sales</span>
+            <span class="stat-icon green">↗</span>
+        </div>
+
+        <h3 class="stat-value"
+            id="totalSales"
+            data-dashboard-stat="sales">
+            EGP 24,500
+        </h3>
+
+        <p class="stat-description">Demo data</p>
+
+    </article>
+
+    <article class="stat-card">
+
+        <div class="stat-card-top">
+            <span class="stat-label">Total Orders</span>
+            <span class="stat-icon blue">▣</span>
+        </div>
+
+        <h3 class="stat-value"
+            id="totalOrders"
+            data-dashboard-stat="orders">
+            128
+        </h3>
+
+        <p class="stat-description">Demo data</p>
+
+    </article>
+
+    <article class="stat-card">
+
+        <div class="stat-card-top">
+            <span class="stat-label">Total Medicines</span>
+            <span class="stat-icon orange">▤</span>
+        </div>
+
+        <h3 class="stat-value"
+            id="totalMedicines"
+            data-dashboard-stat="medicines">
+            856
+        </h3>
+
+        <p class="stat-description">Demo data</p>
+
+    </article>
+
+    <article class="stat-card">
+
+        <div class="stat-card-top">
+            <span class="stat-label">Active Branches</span>
+            <span class="stat-icon red">⌂</span>
+        </div>
+
+        <h3 class="stat-value"
+            id="activeBranches"
+            data-dashboard-stat="branches">
+            4
+        </h3>
+
+        <p class="stat-description">Demo data</p>
+
+    </article>
+
+</section>
+
+<!-- Dashboard Sections -->
+<section class="dashboard-grid">
+
+    <!-- Recent Orders -->
+    <div class="dashboard-section">
+
+        <div class="dashboard-section-header">
+
+            <div>
+                <h3 class="dashboard-section-title">
+                    Recent Orders
+                </h3>
+
+                <p>Latest customer orders</p>
+            </div>
+
+            <a asp-controller="Admin"
+               asp-action="Orders"
+               class="btn btn-outline btn-sm">
+                View All
+            </a>
+
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="admin-table" id="recentOrdersTable">
+
+                <thead>
+                    <tr>
+                        <th scope="col">Order ID</th>
+                        <th scope="col">Customer</th>
+                        <th scope="col">Branch</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="recentOrdersTableBody">
+
+                    <tr>
+                        <td>#ORD-1001</td>
+                        <td>Ahmed Mohamed</td>
+                        <td>Sheikh Zayed</td>
+                        <td>EGP 450</td>
+                        <td>
+                            <span class="badge badge-success">
+                                Delivered
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>#ORD-1002</td>
+                        <td>Omar Ali</td>
+                        <td>October</td>
+                        <td>EGP 280</td>
+                        <td>
+                            <span class="badge badge-warning">
+                                Pending
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>#ORD-1003</td>
+                        <td>Mohamed Hassan</td>
+                        <td>Dokki</td>
+                        <td>EGP 620</td>
+                        <td>
+                            <span class="badge badge-info">
+                                Processing
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>#ORD-1004</td>
+                        <td>Youssef Samir</td>
+                        <td>Sheikh Zayed</td>
+                        <td>EGP 190</td>
+                        <td>
+                            <span class="badge badge-danger">
+                                Cancelled
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>#ORD-1005</td>
+                        <td>Ali Mahmoud</td>
+                        <td>October</td>
+                        <td>EGP 350</td>
+                        <td>
+                            <span class="badge badge-warning">
+                                Pending
+                            </span>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- Low Stock -->
+    <div class="dashboard-section">
+
+        <div class="dashboard-section-header">
+
+            <div>
+                <h3 class="dashboard-section-title">
+                    Low Stock Medicines
+                </h3>
+
+                <p>Medicines that need attention</p>
+            </div>
+
+            <a asp-controller="Admin"
+               asp-action="Medicines"
+               class="btn btn-outline btn-sm">
+                View All
+            </a>
+
+        </div>
+
+        <div class="low-stock-list" id="lowStockList">
+
+            <div class="low-stock-item">
+
+                <div class="medicine-info">
+                    <div class="medicine-placeholder">M</div>
+
+                    <div>
+                        <strong>Panadol Extra</strong>
+                        <span>Medicine ID: MED-001</span>
+                    </div>
+                </div>
+
+                <div class="stock-info">
+                    <strong>5</strong>
+                    <span>Left</span>
+                </div>
+
+            </div>
+
+            <div class="low-stock-item">
+
+                <div class="medicine-info">
+                    <div class="medicine-placeholder">V</div>
+
+                    <div>
+                        <strong>Vitamin C</strong>
+                        <span>Medicine ID: MED-014</span>
+                    </div>
+                </div>
+
+                <div class="stock-info">
+                    <strong>8</strong>
+                    <span>Left</span>
+                </div>
+
+            </div>
+
+            <div class="low-stock-item">
+
+                <div class="medicine-info">
+                    <div class="medicine-placeholder">B</div>
+
+                    <div>
+                        <strong>Brufen 400</strong>
+                        <span>Medicine ID: MED-023</span>
+                    </div>
+                </div>
+
+                <div class="stock-info">
+                    <strong>3</strong>
+                    <span>Left</span>
+                </div>
+
+            </div>
+
+            <div class="low-stock-item">
+
+                <div class="medicine-info">
+                    <div class="medicine-placeholder">Z</div>
+
+                    <div>
+                        <strong>Zyrtec</strong>
+                        <span>Medicine ID: MED-031</span>
+                    </div>
+                </div>
+
+                <div class="stock-info">
+                    <strong>6</strong>
+                    <span>Left</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Quick Actions -->
+<section class="dashboard-section quick-actions-section">
+
+    <div class="dashboard-section-header">
+
+        <div>
+            <h3 class="dashboard-section-title">
+                Quick Actions
+            </h3>
+
+            <p>Access common management tasks</p>
+        </div>
+
+    </div>
+
+    <div class="quick-actions">
+
+        <a asp-controller="Admin"
+           asp-action="Medicines"
+           class="quick-action-card">
+
+            <span class="quick-action-icon">+</span>
+            <strong>Manage Medicines</strong>
+            <span>View and manage products</span>
+
+        </a>
+
+        <a asp-controller="Admin"
+           asp-action="Branches"
+           class="quick-action-card">
+
+            <span class="quick-action-icon">⌂</span>
+            <strong>Manage Branches</strong>
+            <span>View pharmacy branches</span>
+
+        </a>
+
+        <a asp-controller="Admin"
+           asp-action="Orders"
+           class="quick-action-card">
+
+            <span class="quick-action-icon">▣</span>
+            <strong>Manage Orders</strong>
+            <span>Review customer orders</span>
+
+        </a>
+
+    </div>
+
+</section>
+
+<!-- Footer -->
+<footer class="admin-footer">
+    <p>PharmaCare Management System</p>
+    <span>Version 1.0</span>
+</footer>

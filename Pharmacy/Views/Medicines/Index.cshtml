@@ -1,0 +1,416 @@
+﻿@{
+    ViewData["Title"] = "Medicines";
+}
+
+<main>
+
+    <!-- Page Banner -->
+    <section class="customer-page-banner">
+        <div class="container">
+            <div class="breadcrumb">
+                <a asp-controller="Home" asp-action="Index">Home</a>
+                <span>/</span>
+                <span>Medicines</span>
+            </div>
+
+            <h1>Our Medicines</h1>
+            <p>Browse our products and find what you need.</p>
+        </div>
+    </section>
+
+    <!-- Medicines Content -->
+    <section class="medicines-page-section">
+        <div class="container">
+            <div class="medicines-layout">
+
+                <!-- Filters Sidebar -->
+                <aside class="medicines-sidebar">
+                    <div class="filter-card">
+
+                        <div class="filter-header">
+                            <h2>Filters</h2>
+                            <button type="button" class="filter-reset"
+                                    data-clear-filters>
+                                Clear All
+                            </button>
+                        </div>
+
+                        <!-- Search -->
+                        <div class="filter-group">
+                            <label for="medicineSearch">Search Medicines</label>
+
+                            <div class="filter-search">
+                                <span>⌕</span>
+                                <input type="search"
+                                       id="medicineSearch"
+                                       placeholder="Medicine name..."
+                                       data-medicine-search
+                                       data-medicine-target=".product-card">
+                            </div>
+                        </div>
+
+                        <!-- Category -->
+                        <div class="filter-group">
+                            <label for="categoryFilter">Category</label>
+
+                            <select id="categoryFilter"
+                                    class="form-control"
+                                    data-category-filter>
+                                <option value="all">All Categories</option>
+                                <option value="Pain Relief">Pain Relief</option>
+                                <option value="Vitamins">Vitamins</option>
+                                <option value="Allergy">Allergy</option>
+                                <option value="Supplements">Supplements</option>
+                                <option value="Antibiotics">Antibiotics</option>
+                                <option value="Heart Care">Heart Care</option>
+                            </select>
+                        </div>
+
+                        <!-- Branch -->
+                        <div class="filter-group">
+                            <label for="branchFilter">Branch</label>
+
+                            <select id="branchFilter"
+                                    class="form-control">
+                                <option value="">All Branches</option>
+                                <option value="Sheikh Zayed">Sheikh Zayed</option>
+                                <option value="October">October</option>
+                                <option value="Dokki">Dokki</option>
+                                <option value="Maadi">Maadi</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </aside>
+
+                <!-- Products -->
+                <div class="medicines-main">
+
+                    <div class="medicines-toolbar">
+                        <div>
+                            <h2>All Products</h2>
+                            <p>Browse our available medicines.</p>
+                        </div>
+
+                        <select class="form-control"
+                                aria-label="Sort products">
+                            <option value="default">Default Sorting</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="name">Name: A to Z</option>
+                        </select>
+                    </div>
+
+                    <div class="products-grid">
+
+                        <!-- Product 1 -->
+                        <article class="product-card"
+                                 data-medicine-item
+                                 data-category="Pain Relief"
+                                 data-branch="Sheikh Zayed">
+
+                            <div class="product-image">
+                                <div class="product-image-placeholder">
+                                    <span>MED</span>
+                                </div>
+                                <span class="product-tag">Popular</span>
+                            </div>
+
+                            <div class="product-info">
+                                <span class="product-category">Pain Relief</span>
+                                <h3>Panadol Extra</h3>
+                                <p class="product-description">Pain relief tablets.</p>
+
+                                <div class="product-stock">
+                                    <span class="stock-dot"></span>
+                                    In Stock
+                                </div>
+
+                                <div class="product-bottom">
+                                    <strong class="product-price">EGP 45</strong>
+                                    <button type="button"
+                                            class="btn btn-primary btn-sm"
+                                            data-add-to-cart
+                                            data-product-id="MED-001"
+                                            data-product-name="Panadol Extra"
+                                            data-product-price="45"
+                                            data-product-image="">
+                                        Add
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Product 2 -->
+                        <article class="product-card"
+                                 data-medicine-item
+                                 data-category="Vitamins"
+                                 data-branch="October">
+
+                            <div class="product-image">
+                                <div class="product-image-placeholder">
+                                    <span>MED</span>
+                                </div>
+                            </div>
+
+                            <div class="product-info">
+                                <span class="product-category">Vitamins</span>
+                                <h3>Vitamin C</h3>
+                                <p class="product-description">Vitamin C tablets.</p>
+
+                                <div class="product-stock">
+                                    <span class="stock-dot"></span>
+                                    In Stock
+                                </div>
+
+                                <div class="product-bottom">
+                                    <strong class="product-price">EGP 85</strong>
+                                    <button type="button"
+                                            class="btn btn-primary btn-sm"
+                                            data-add-to-cart
+                                            data-product-id="MED-002"
+                                            data-product-name="Vitamin C"
+                                            data-product-price="85"
+                                            data-product-image="">
+                                        Add
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Product 3 -->
+                        <article class="product-card"
+                                 data-medicine-item
+                                 data-category="Pain Relief"
+                                 data-branch="Dokki">
+
+                            <div class="product-image">
+                                <div class="product-image-placeholder">
+                                    <span>MED</span>
+                                </div>
+                            </div>
+
+                            <div class="product-info">
+                                <span class="product-category">Pain Relief</span>
+                                <h3>Brufen 400</h3>
+                                <p class="product-description">Pain relief tablets.</p>
+
+                                <div class="product-stock">
+                                    <span class="stock-dot"></span>
+                                    In Stock
+                                </div>
+
+                                <div class="product-bottom">
+                                    <strong class="product-price">EGP 35</strong>
+                                    <button type="button"
+                                            class="btn btn-primary btn-sm"
+                                            data-add-to-cart
+                                            data-product-id="MED-003"
+                                            data-product-name="Brufen 400"
+                                            data-product-price="35"
+                                            data-product-image="">
+                                        Add
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Product 4 -->
+                        <article class="product-card"
+                                 data-medicine-item
+                                 data-category="Allergy"
+                                 data-branch="Maadi">
+
+                            <div class="product-image">
+                                <div class="product-image-placeholder">
+                                    <span>MED</span>
+                                </div>
+                            </div>
+
+                            <div class="product-info">
+                                <span class="product-category">Allergy</span>
+                                <h3>Zyrtec</h3>
+                                <p class="product-description">Allergy relief tablets.</p>
+
+                                <div class="product-stock">
+                                    <span class="stock-dot"></span>
+                                    In Stock
+                                </div>
+
+                                <div class="product-bottom">
+                                    <strong class="product-price">EGP 60</strong>
+                                    <button type="button"
+                                            class="btn btn-primary btn-sm"
+                                            data-add-to-cart
+                                            data-product-id="MED-004"
+                                            data-product-name="Zyrtec"
+                                            data-product-price="60"
+                                            data-product-image="">
+                                        Add
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Product 5 -->
+                        <article class="product-card"
+                                 data-medicine-item
+                                 data-category="Antibiotics"
+                                 data-branch="Sheikh Zayed">
+
+                            <div class="product-image">
+                                <div class="product-image-placeholder">
+                                    <span>MED</span>
+                                </div>
+                            </div>
+
+                            <div class="product-info">
+                                <span class="product-category">Antibiotics</span>
+                                <h3>Augmentin 1g</h3>
+                                <p class="product-description">Prescription medicine.</p>
+
+                                <div class="product-stock">
+                                    <span class="stock-dot"></span>
+                                    In Stock
+                                </div>
+
+                                <div class="product-bottom">
+                                    <strong class="product-price">EGP 120</strong>
+                                    <button type="button"
+                                            class="btn btn-primary btn-sm"
+                                            data-add-to-cart
+                                            data-product-id="MED-005"
+                                            data-product-name="Augmentin 1g"
+                                            data-product-price="120"
+                                            data-product-image="">
+                                        Add
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Product 6 -->
+                        <article class="product-card"
+                                 data-medicine-item
+                                 data-category="Supplements"
+                                 data-branch="October">
+
+                            <div class="product-image">
+                                <div class="product-image-placeholder">
+                                    <span>MED</span>
+                                </div>
+                            </div>
+
+                            <div class="product-info">
+                                <span class="product-category">Supplements</span>
+                                <h3>Omega 3</h3>
+                                <p class="product-description">Omega 3 capsules.</p>
+
+                                <div class="product-stock">
+                                    <span class="stock-dot"></span>
+                                    In Stock
+                                </div>
+
+                                <div class="product-bottom">
+                                    <strong class="product-price">EGP 180</strong>
+                                    <button type="button"
+                                            class="btn btn-primary btn-sm"
+                                            data-add-to-cart
+                                            data-product-id="MED-006"
+                                            data-product-name="Omega 3"
+                                            data-product-price="180"
+                                            data-product-image="">
+                                        Add
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Product 7 -->
+                        <article class="product-card"
+                                 data-medicine-item
+                                 data-category="Pain Relief"
+                                 data-branch="Dokki">
+
+                            <div class="product-image">
+                                <div class="product-image-placeholder">
+                                    <span>MED</span>
+                                </div>
+                            </div>
+
+                            <div class="product-info">
+                                <span class="product-category">Pain Relief</span>
+                                <h3>Panadol Advance</h3>
+                                <p class="product-description">Pain relief tablets.</p>
+
+                                <div class="product-stock">
+                                    <span class="stock-dot"></span>
+                                    In Stock
+                                </div>
+
+                                <div class="product-bottom">
+                                    <strong class="product-price">EGP 40</strong>
+                                    <button type="button"
+                                            class="btn btn-primary btn-sm"
+                                            data-add-to-cart
+                                            data-product-id="MED-007"
+                                            data-product-name="Panadol Advance"
+                                            data-product-price="40"
+                                            data-product-image="">
+                                        Add
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Product 8 -->
+                        <article class="product-card"
+                                 data-medicine-item
+                                 data-category="Heart Care"
+                                 data-branch="Maadi">
+
+                            <div class="product-image">
+                                <div class="product-image-placeholder">
+                                    <span>MED</span>
+                                </div>
+                            </div>
+
+                            <div class="product-info">
+                                <span class="product-category">Heart Care</span>
+                                <h3>Concor 5mg</h3>
+                                <p class="product-description">Prescription medicine.</p>
+
+                                <div class="product-stock">
+                                    <span class="stock-dot"></span>
+                                    In Stock
+                                </div>
+
+                                <div class="product-bottom">
+                                    <strong class="product-price">EGP 95</strong>
+                                    <button type="button"
+                                            class="btn btn-primary btn-sm"
+                                            data-add-to-cart
+                                            data-product-id="MED-008"
+                                            data-product-name="Concor 5mg"
+                                            data-product-price="95"
+                                            data-product-image="">
+                                        Add
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+
+                    <!-- Empty State -->
+                    <div class="empty-state" data-medicines-empty hidden>
+                        <h3>No medicines found</h3>
+                        <p>Try another search or category.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>

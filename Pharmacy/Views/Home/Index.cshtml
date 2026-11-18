@@ -1,0 +1,355 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<!-- Hero -->
+<section class="hero-section">
+    <div class="container">
+        <div class="hero-content">
+
+            <div class="hero-text">
+                <span class="hero-label">
+                    YOUR HEALTH, OUR PRIORITY
+                </span>
+
+                <h1>
+                    Your Health Starts
+                    <span>With Us</span>
+                </h1>
+
+                <p>
+                    Find the medicines you need and order them
+                    online with ease. Your health is our priority.
+                </p>
+
+                <div class="hero-actions">
+                    <a asp-controller="Medicines" asp-action="Index"
+                       class="btn btn-primary">
+                        Shop Medicines
+                    </a>
+
+                    <a href="#categories" class="btn btn-outline">
+                        Explore Categories
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-image-placeholder">
+                    <div class="hero-cross">+</div>
+                    <span>PharmaCare</span>
+                    <p>Your Health Partner</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Search -->
+<section class="home-search-section">
+    <div class="container">
+        <div class="home-search-box">
+
+            <div class="search-heading">
+                <h2>Find Your Medicine</h2>
+                <p>Search by medicine name or product.</p>
+            </div>
+
+            <form class="medicine-search-form"
+                  asp-controller="Medicines"
+                  asp-action="Index"
+                  method="get">
+
+                <span class="search-icon">⌕</span>
+
+                <input type="search"
+                       name="search"
+                       placeholder="Search for medicines..."
+                       aria-label="Search medicines">
+
+                <button type="submit" class="btn btn-primary">
+                    Search
+                </button>
+            </form>
+
+        </div>
+    </div>
+</section>
+
+<!-- Categories -->
+<section class="categories-section" id="categories">
+    <div class="container">
+
+        <div class="section-header">
+            <div>
+                <span class="section-eyebrow">EXPLORE</span>
+                <h2>Shop By Category</h2>
+                <p>Find what you need with ease.</p>
+            </div>
+
+            <a asp-controller="Medicines" asp-action="Index"
+               class="text-link">
+                View All
+            </a>
+        </div>
+
+        <div class="categories-grid">
+
+            <a asp-controller="Medicines" asp-action="Index"
+               asp-route-category="Pain Relief"
+               class="category-card">
+                <span class="category-icon">✚</span>
+                <h3>Pain Relief</h3>
+                <p>For pain care</p>
+            </a>
+
+            <a asp-controller="Medicines" asp-action="Index"
+               asp-route-category="Vitamins"
+               class="category-card">
+                <span class="category-icon">✦</span>
+                <h3>Vitamins</h3>
+                <p>Daily vitamins</p>
+            </a>
+
+            <a asp-controller="Medicines" asp-action="Index"
+               asp-route-category="Allergy"
+               class="category-card">
+                <span class="category-icon">❋</span>
+                <h3>Allergy</h3>
+                <p>Allergy care</p>
+            </a>
+
+            <a asp-controller="Medicines" asp-action="Index"
+               asp-route-category="Supplements"
+               class="category-card">
+                <span class="category-icon">◈</span>
+                <h3>Supplements</h3>
+                <p>Daily support</p>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<!-- Featured Medicines -->
+<section class="featured-section">
+    <div class="container">
+
+        <div class="section-header">
+            <div>
+                <span class="section-eyebrow">OUR PRODUCTS</span>
+                <h2>Featured Medicines</h2>
+                <p>Browse some of our listed products.</p>
+            </div>
+
+            <a asp-controller="Medicines" asp-action="Index"
+               class="text-link">
+                View All Medicines
+            </a>
+        </div>
+
+        <div class="products-grid">
+
+            <!-- Product 1 -->
+            <article class="product-card"
+                     data-medicine-item
+                     data-category="Pain Relief">
+
+                <div class="product-image">
+                    <div class="product-image-placeholder">
+                        <span>MED</span>
+                    </div>
+
+                    <span class="product-tag">Popular</span>
+                </div>
+
+                <div class="product-info">
+                    <span class="product-category">Pain Relief</span>
+                    <h3>Panadol Extra</h3>
+
+                    <p class="product-description">
+                        Pain relief tablets.
+                    </p>
+
+                    <div class="product-bottom">
+                        <strong class="product-price">EGP 45</strong>
+
+                        <button type="button"
+                                class="btn btn-primary btn-sm"
+                                data-add-to-cart
+                                data-product-id="MED-001"
+                                data-product-name="Panadol Extra"
+                                data-product-price="45"
+                                data-product-image="">
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 2 -->
+            <article class="product-card"
+                     data-medicine-item
+                     data-category="Vitamins">
+
+                <div class="product-image">
+                    <div class="product-image-placeholder">
+                        <span>MED</span>
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <span class="product-category">Vitamins</span>
+                    <h3>Vitamin C</h3>
+
+                    <p class="product-description">
+                        Vitamin C tablets.
+                    </p>
+
+                    <div class="product-bottom">
+                        <strong class="product-price">EGP 85</strong>
+
+                        <button type="button"
+                                class="btn btn-primary btn-sm"
+                                data-add-to-cart
+                                data-product-id="MED-002"
+                                data-product-name="Vitamin C"
+                                data-product-price="85"
+                                data-product-image="">
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 3 -->
+            <article class="product-card"
+                     data-medicine-item
+                     data-category="Pain Relief">
+
+                <div class="product-image">
+                    <div class="product-image-placeholder">
+                        <span>MED</span>
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <span class="product-category">Pain Relief</span>
+                    <h3>Brufen 400</h3>
+
+                    <p class="product-description">
+                        Pain relief tablets.
+                    </p>
+
+                    <div class="product-bottom">
+                        <strong class="product-price">EGP 35</strong>
+
+                        <button type="button"
+                                class="btn btn-primary btn-sm"
+                                data-add-to-cart
+                                data-product-id="MED-003"
+                                data-product-name="Brufen 400"
+                                data-product-price="35"
+                                data-product-image="">
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 4 -->
+            <article class="product-card"
+                     data-medicine-item
+                     data-category="Allergy">
+
+                <div class="product-image">
+                    <div class="product-image-placeholder">
+                        <span>MED</span>
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <span class="product-category">Allergy</span>
+                    <h3>Zyrtec</h3>
+
+                    <p class="product-description">
+                        Allergy relief tablets.
+                    </p>
+
+                    <div class="product-bottom">
+                        <strong class="product-price">EGP 60</strong>
+
+                        <button type="button"
+                                class="btn btn-primary btn-sm"
+                                data-add-to-cart
+                                data-product-id="MED-004"
+                                data-product-name="Zyrtec"
+                                data-product-price="60"
+                                data-product-image="">
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="benefits-section">
+    <div class="container">
+
+        <div class="section-header">
+            <div>
+                <span class="section-eyebrow">WHY PHARMACARE</span>
+                <h2>Why Choose Us?</h2>
+                <p>Simple and clear service for your needs.</p>
+            </div>
+        </div>
+
+        <div class="benefits-grid">
+
+            <div class="benefit-card">
+                <span class="benefit-icon">✓</span>
+                <h3>Easy Orders</h3>
+                <p>Order your medicines in a few steps.</p>
+            </div>
+
+            <div class="benefit-card">
+                <span class="benefit-icon">⌂</span>
+                <h3>Many Branches</h3>
+                <p>Choose a branch near your area.</p>
+            </div>
+
+            <div class="benefit-card">
+                <span class="benefit-icon">♡</span>
+                <h3>Health First</h3>
+                <p>Your health and care matter to us.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Call To Action -->
+<section class="home-cta-section">
+    <div class="container">
+
+        <div class="home-cta-content">
+            <div>
+                <h2>Need Your Medicines?</h2>
+                <p>
+                    Browse our products and place your order today.
+                </p>
+            </div>
+
+            <a asp-controller="Medicines" asp-action="Index"
+               class="btn btn-light">
+                Browse Medicines
+            </a>
+        </div>
+
+    </div>
+</section>

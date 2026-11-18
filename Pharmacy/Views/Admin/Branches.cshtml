@@ -1,0 +1,369 @@
+﻿@{
+    ViewData["Title"] = "Branches";
+    ViewData["Subtitle"] = "Manage your pharmacy branches";
+    ViewData["Page"] = "branches";
+    ViewData["ActivePage"] = "Branches";
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Page Header -->
+<section class="page-header">
+
+    <div class="page-heading">
+        <h2>Branch Management</h2>
+        <p>View, add, and manage all pharmacy branches.</p>
+    </div>
+
+    <div class="page-actions">
+        <button class="btn btn-primary"
+                type="button"
+                data-modal-open="addBranchModal">
+            + Add New Branch
+        </button>
+    </div>
+
+</section>
+
+<!-- Statistics -->
+<section class="stats-grid">
+
+    <article class="stat-card">
+        <div class="stat-card-top">
+            <span class="stat-label">Total Branches</span>
+            <span class="stat-icon blue">⌂</span>
+        </div>
+
+        <h3 class="stat-value" data-branch-stat="total">0</h3>
+
+        <p class="stat-description">
+            All registered branches
+        </p>
+    </article>
+
+    <article class="stat-card">
+        <div class="stat-card-top">
+            <span class="stat-label">Active Branches</span>
+            <span class="stat-icon green">✓</span>
+        </div>
+
+        <h3 class="stat-value" data-branch-stat="active">0</h3>
+
+        <p class="stat-description">
+            Currently operational
+        </p>
+    </article>
+
+    <article class="stat-card">
+        <div class="stat-card-top">
+            <span class="stat-label">Inactive Branches</span>
+            <span class="stat-icon orange">−</span>
+        </div>
+
+        <h3 class="stat-value" data-branch-stat="inactive">0</h3>
+
+        <p class="stat-description">
+            Currently unavailable
+        </p>
+    </article>
+
+</section>
+
+<!-- Branches Table -->
+<section class="dashboard-section">
+
+    <div class="dashboard-section-header">
+
+        <div>
+            <h3 class="dashboard-section-title">
+                All Branches
+            </h3>
+
+            <p>Manage branch information and status</p>
+        </div>
+
+        <span class="badge badge-info" id="branchesTotalBadge">
+            0 Branches
+        </span>
+
+    </div>
+
+    <!-- Toolbar -->
+    <div class="table-toolbar">
+
+        <div class="table-search">
+            <span>⌕</span>
+
+            <input type="search"
+                   id="branchSearch"
+                   name="search"
+                   placeholder="Search branches..."
+                   aria-label="Search branches"
+                   data-table-search="#branchesTable">
+        </div>
+
+        <div class="toolbar-filters">
+
+            <select class="form-control"
+                    id="branchStatusFilter"
+                    name="statusFilter"
+                    aria-label="Filter by branch status"
+                    data-table-filter
+                    data-table-target="#branchesTable"
+                    data-filter-column="4">
+
+                <option value="">All Statuses</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+
+            </select>
+
+            <button type="button"
+                    class="btn btn-outline btn-sm"
+                    data-clear-filters>
+                Clear
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Table -->
+    <div class="table-responsive">
+
+        <table class="admin-table" id="branchesTable">
+
+            <thead>
+                <tr>
+                    <th scope="col">Branch ID</th>
+                    <th scope="col">Branch Name</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody id="branchesTableBody">
+                <!-- Rendered by admin.js -->
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="table-footer">
+        <span data-table-count="branchesTable">
+            Showing 0 branches
+        </span>
+    </div>
+
+</section>
+
+<!-- Footer -->
+<footer class="admin-footer">
+    <p>PharmaCare Management System</p>
+    <span>Version 1.0</span>
+</footer>
+
+
+<!-- ADD BRANCH MODAL -->
+<div class="modal" id="addBranchModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <div>
+                <h3>Add New Branch</h3>
+                <p>Enter the new branch information.</p>
+            </div>
+
+            <button type="button"
+                    class="modal-close"
+                    data-modal-close
+                    aria-label="Close modal">
+                ×
+            </button>
+
+        </div>
+
+        <form id="addBranchForm" data-form-purpose="create-branch">
+
+            <div class="form-group">
+                <label for="branchName">Branch Name</label>
+
+                <input type="text"
+                       id="branchName"
+                       name="branchName"
+                       class="form-control"
+                       placeholder="Enter branch name"
+                       maxlength="150"
+                       autocomplete="organization"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="branchLocation">Location</label>
+
+                <input type="text"
+                       id="branchLocation"
+                       name="branchLocation"
+                       class="form-control"
+                       placeholder="Enter branch address"
+                       maxlength="300"
+                       autocomplete="street-address"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="branchPhone">Phone Number</label>
+
+                <input type="tel"
+                       id="branchPhone"
+                       name="branchPhone"
+                       class="form-control"
+                       placeholder="Enter phone number"
+                       maxlength="20"
+                       pattern="[0-9+() -]{7,20}"
+                       autocomplete="tel"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="branchStatus">Status</label>
+
+                <select id="branchStatus"
+                        name="branchStatus"
+                        class="form-control"
+                        required>
+
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+
+                </select>
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button"
+                        class="btn btn-outline"
+                        data-modal-close>
+                    Cancel
+                </button>
+
+                <button type="submit"
+                        class="btn btn-primary">
+                    Save Branch
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- EDIT BRANCH MODAL -->
+<div class="modal" id="editBranchModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <div>
+                <h3>Edit Branch</h3>
+                <p>Update branch information.</p>
+            </div>
+
+            <button type="button"
+                    class="modal-close"
+                    data-modal-close
+                    aria-label="Close modal">
+                ×
+            </button>
+
+        </div>
+
+        <form id="editBranchForm" data-form-purpose="update-branch">
+
+            <input type="hidden"
+                   id="editBranchId"
+                   name="branchId">
+
+            <div class="form-group">
+                <label for="editBranchName">Branch Name</label>
+
+                <input type="text"
+                       id="editBranchName"
+                       name="branchName"
+                       class="form-control"
+                       placeholder="Enter branch name"
+                       maxlength="150"
+                       autocomplete="organization"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="editBranchLocation">Location</label>
+
+                <input type="text"
+                       id="editBranchLocation"
+                       name="branchLocation"
+                       class="form-control"
+                       placeholder="Enter branch address"
+                       maxlength="300"
+                       autocomplete="street-address"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="editBranchPhone">Phone Number</label>
+
+                <input type="tel"
+                       id="editBranchPhone"
+                       name="branchPhone"
+                       class="form-control"
+                       placeholder="Enter phone number"
+                       maxlength="20"
+                       pattern="[0-9+() -]{7,20}"
+                       autocomplete="tel"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="editBranchStatus">Status</label>
+
+                <select id="editBranchStatus"
+                        name="branchStatus"
+                        class="form-control"
+                        required>
+
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+
+                </select>
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button"
+                        class="btn btn-outline"
+                        data-modal-close>
+                    Cancel
+                </button>
+
+                <button type="submit"
+                        class="btn btn-primary">
+                    Save Changes
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

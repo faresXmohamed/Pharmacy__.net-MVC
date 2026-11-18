@@ -1,0 +1,173 @@
+﻿
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pharmacy administration dashboard">
+
+    <title>@ViewData["Title"] | Pharmacy Admin</title>
+
+    <link rel="stylesheet" href="~/css/global.css">
+    <link rel="stylesheet" href="~/css/admin.css">
+
+    @await RenderSectionAsync("Styles", required: false)
+
+    <script src="~/js/shared/shared.js" defer></script>
+    <script src="~/js/admin/admin.js" defer></script>
+</head>
+
+<body data-page="@ViewData["Page"]">
+
+    <div class="admin-layout">
+
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+
+            <div class="sidebar-brand">
+                <div class="brand-icon">P</div>
+
+                <div>
+                    <h2>PharmaCare</h2>
+                    <span>Management System</span>
+                </div>
+            </div>
+
+            <div class="sidebar-menu">
+
+                <p class="sidebar-heading">MAIN MENU</p>
+
+                <nav class="sidebar-nav">
+
+                    <a asp-controller="Admin"
+                       asp-action="Dashboard"
+                       class="sidebar-link @(ViewData["ActivePage"]?.ToString() == "Dashboard" ? "active" : "")"
+                       aria-current="@(ViewData["ActivePage"]?.ToString() == "Dashboard" ? "page" : null)">
+                        <span class="nav-icon">▦</span>
+                        <span>Dashboard</span>
+                    </a>
+
+                    <a asp-controller="Admin"
+                       asp-action="Branches"
+                       class="sidebar-link @(ViewData["ActivePage"]?.ToString() == "Branches" ? "active" : "")">
+                        <span class="nav-icon">⌂</span>
+                        <span>Branches</span>
+                    </a>
+
+                    <a asp-controller="Admin"
+                       asp-action="Medicines"
+                       class="sidebar-link @(ViewData["ActivePage"]?.ToString() == "Medicines" ? "active" : "")">
+                        <span class="nav-icon">▤</span>
+                        <span>Medicines</span>
+                    </a>
+
+                    <a asp-controller="Admin"
+                       asp-action="Orders"
+                       class="sidebar-link @(ViewData["ActivePage"]?.ToString() == "Orders" ? "active" : "")">
+                        <span class="nav-icon">▣</span>
+                        <span>Orders</span>
+                    </a>
+
+                </nav>
+
+                <p class="sidebar-heading">OTHER</p>
+
+                <nav class="sidebar-nav">
+
+                    <a asp-controller="Home"
+                       asp-action="Index"
+                       class="sidebar-link">
+                        <span class="nav-icon">↗</span>
+                        <span>Customer Website</span>
+                    </a>
+
+                    <a asp-controller="Account"
+                       asp-action="Login"
+                       class="sidebar-link">
+                        <span class="nav-icon">⇥</span>
+                        <span>Logout</span>
+                    </a>
+
+                </nav>
+
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="admin-avatar">AD</div>
+
+                <div class="admin-user-info">
+                    <strong>Admin User</strong>
+                    <span>Administrator</span>
+                </div>
+            </div>
+
+        </aside>
+
+        <div class="sidebar-overlay"></div>
+
+        <!-- Main Content -->
+        <div class="admin-main">
+
+            <!-- Topbar -->
+            <header class="admin-topbar">
+
+                <div class="topbar-left">
+
+                    <button class="sidebar-toggle"
+                            type="button"
+                            aria-label="Open menu">
+                        ☰
+                    </button>
+
+                    <div>
+                        <h1 class="topbar-title">@ViewData["Title"]</h1>
+                        <p class="topbar-subtitle">@ViewData["Subtitle"]</p>
+                    </div>
+
+                </div>
+
+                <div class="topbar-right">
+
+                    <div class="topbar-search">
+                        <span>⌕</span>
+
+                        <input type="search"
+                               id="dashboardSearch"
+                               name="search"
+                               placeholder="Search..."
+                               aria-label="Search dashboard">
+                    </div>
+
+                    <button class="topbar-icon-btn"
+                            type="button"
+                            aria-label="Notifications">
+                        ♧
+                    </button>
+
+                    <div class="topbar-profile">
+                        <div class="admin-avatar">AD</div>
+
+                        <div>
+                            <strong>Admin</strong>
+                            <span>Administrator</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </header>
+
+            <!-- Page Content -->
+            <main class="admin-content">
+                @RenderBody()
+            </main>
+
+        </div>
+
+    </div>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
