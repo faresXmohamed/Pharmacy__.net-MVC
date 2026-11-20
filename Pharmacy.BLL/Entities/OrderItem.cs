@@ -22,6 +22,7 @@ namespace Pharmacy.BLL.Entities
 
         public decimal UnitPrice { get; set; }
 
+
         // Navigation Properties
         public Order Order { get; set; }
 
